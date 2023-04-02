@@ -9,7 +9,7 @@ namespace Exam
 
         public DbSet<UserAddress> Address { get; set; }
 
-        public DbSet<UserInformation> UserInformation { get; set; }
+        public DbSet<PersonalInformation> PersonalInformation { get; set; }
 
         public UserRegistrationDbContext(DbContextOptions<UserRegistrationDbContext> options) : base(options)
         {

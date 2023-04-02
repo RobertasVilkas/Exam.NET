@@ -89,7 +89,7 @@ namespace Exam.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]
         [HttpGet("get-all-accounts")]
-        public List<AccountInfoDto> GetAllAccounts()
+        public List<UserInformationDto> GetAllAccounts()
         {
             return _userInformation.GetAllAccounts();
         }

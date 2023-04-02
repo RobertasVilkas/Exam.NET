@@ -12,7 +12,7 @@ namespace Exam.DTO
         public string Role { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public UserInformationDto UserInformation { get; internal set; }
+        public PersonalInformationDto UserInformation { get; internal set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 
         public UserAddressDto UserAddress { get; internal set; }
@@ -41,7 +41,7 @@ namespace Exam.DTO
                     Email = account.UserInformation.Email
                 };
 
-                if (account.UserInformation.UserAddress != null)
+                if (account.PersonalInformation.UserAddress != null)
                 {
                     userDto.UserAddress = new UserAddressDto
                     {

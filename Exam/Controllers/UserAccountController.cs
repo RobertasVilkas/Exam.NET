@@ -8,18 +8,18 @@ namespace Exam.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class UserAccountsController : ControllerBase
     {
         private readonly IUserAccountService _accountsService;
         private readonly IJwtService _jwtService;
-        public AccountsController(IUserAccountService accountsService, IJwtService jwtService)
+        public UserAccountsController(IUserAccountService accountsService, IJwtService jwtService)
         {
             _accountsService = accountsService;
             _jwtService = jwtService;
         }
 
         [HttpPost("SignUp")]
-        public ActionResult SignUp([FromBody] AuthRequestDto request)
+        public ActionResult SignUp([FromBody] AuthorizationDto request)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Exam.Controllers
             }
         }
         [HttpPost("Login")]
-        public ActionResult Login([FromBody] AuthRequestDto request)
+        public ActionResult Login([FromBody] AuthorizationDto request)
         {
             var (loginSuccess, account) = _accountsService.Login(request.UserName, request.Password);
             if (!loginSuccess)

@@ -14,9 +14,9 @@ namespace Exam
 
         public string Role { get; set; }
 
-        public int? HumanInformationId { get; set; }
+        public int? PersonalInformationId { get; set; }
 
-        [ForeignKey("HumanInformationId")]
-        public HumanInformation? HumanInformation { get; set; }
+        [ForeignKey("PersonalInformationId")]
+        public PersonalInformation? PersonalInformation { get; set; }
     }
 }

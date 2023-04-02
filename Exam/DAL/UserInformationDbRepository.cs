@@ -6,20 +6,18 @@ namespace Exam.DAL
 {
     public class UserInformationDbRepository : IUserInformationDbRepository
     {
-
-
         private readonly UserRegistrationDbContext _context;
 
         public UserInformationDbRepository(UserRegistrationDbContext context)
         {
             _context = context;
         }
-        public void AddNewUserToList(int id, UserInformationDto UserDto)
+        public void AddNewUserToList(int id, PersonalInformationDto UserDto)
         {
 
             var userFromDb = _context.UserAccounts.FirstOrDefault(i => i.Id == id);
 
-            userFromDb.HumanInformation = new UserInformation
+            userFromDb.PersonalInformation = new PersonalInformation
             {
                 Name = UserDto.Name,
                 Surname = UserDto.Surname,
@@ -42,36 +40,36 @@ namespace Exam.DAL
             string city, string street, string houseNumber, string flatNumber)
         {
             var userFromDb = _context.UserAccounts
-                .Include(b => b.HumanInformation)
-                .ThenInclude(b => b.UserAddress)
+                .Include(b => b.PersonalInformation)
+                .ThenInclude(b => b.Address)
                 .FirstOrDefault(i => i.Id == accId);
 
-            if (userFromDb.HumanInformation == null)
+            if (userFromDb.PersonalInformation == null)
             {
-                userFromDb.HumanInformation = new UserInformation();
+                userFromDb.PersonalInformation = new PersonalInformation();
             }
 
-            userFromDb.UserInformation.Name = name;
-            userFromDb.UserInformation.Surname = surname;
-            userFromDb.UserInformation.PersonalCode = personalCode;
-            userFromDb.UserInformation.TelephoneNumber = phone;
-            userFromDb.UserInformation.Email = email;
+            userFromDb.PersonalInformation.Name = name;
+            userFromDb.PersonalInformation.Surname = surname;
+            userFromDb.PersonalInformation.PersonalCode = personalCode;
+            userFromDb.PersonalInformation.TelephoneNumber = phone;
+            userFromDb.PersonalInformation.Email = email;
 
-            if (userFromDb.UserInformation.UserAddress == null)
+            if (userFromDb.PersonalInformation.Address == null)
             {
-                userFromDb.UserInformation.UserAddress = new UserAddress();
+                userFromDb.PersonalInformation.Address = new UserAddress();
             }
 
-            userFromDb.UserInformation.UserAddress.City = city;
-            userFromDb.UserInformation.UserAddress.Street = street;
-            userFromDb.UserInformation.UserAddress.HouseNumber = houseNumber;
-            userFromDb.UserInformation.UserAddress.FlatNumber = string.IsNullOrEmpty(flatNumber) ? null : flatNumber;
+            userFromDb.PersonalInformation.Address.City = city;
+            userFromDb.PersonalInformation.Address.Street = street;
+            userFromDb.PersonalInformation.Address.HouseNumber = houseNumber;
+            userFromDb.PersonalInformation.Address.FlatNumber = string.IsNullOrEmpty(flatNumber) ? null : flatNumber;
 
             _context.SaveChanges();
         }
-        public List<UserInfoDto> GetAllAccounts()
+        public List<UserInformationDto> GetAllAccounts()
         {
-            return _context.UserAccounts.Select(x => new UserInfoDto
+            return _context.UserAccounts.Select(x => new UserInformationDto
             {
                 Username = x.Username,
                 Role = x.Role,
@@ -86,21 +84,21 @@ namespace Exam.DAL
 
         public IEnumerable<UserDto> GetAllUserInfo()
         {
-            var accounts = _context.UserAccounts.Include(b => b.UserInformation).ThenInclude(b => b.Address).ToList();
-            List<UserDto> accountDtos = new List<UserDto>();
+            var accounts = _context.UserAccounts.Include(b => b.PersonalInformation).ThenInclude(b => b.UserAddress).ToList();
+            List<UserDto> userDtos = new List<UserDto>();
             foreach (var acc in accounts)
             {
-                if (acc.UserInformation != null)
+                if (acc.PersonalInformation != null)
                 {
-                    var userInfo = acc.userInformation;
+                    var userInfo = acc.PersonalInformation;
                     if (userInfo.UserAddress != null)
                     {
                         var address = userInfo.UserAddress;
-                        var accountDto = new UserDto
+                        var userDto = new UserDto
                         {
                             Username = acc.Username,
                             Role = acc.Role,
-                            UserInformation = new UserInformationDto
+                            UserInformation = new PersonalInformationDto
                             {
                                 Name = userInfo.Name,
                                 Surname = userInfo.Surname,
@@ -124,7 +122,7 @@ namespace Exam.DAL
                         {
                             Username = acc.Username,
                             Role = acc.Role,
-                            UserInformation = new UserInformationDto
+                            UserInformation = new PersonalInformationDto
                             {
                                 Name = userInfo.Name,
                                 Surname = userInfo.Surname,
@@ -154,16 +152,16 @@ namespace Exam.DAL
         public UserDto GetUserInformationById(int userId)
         {
             var account = _context.UserAccounts
-                .Include(b => b.UserInformation)
-                .ThenInclude(b => b.UserAddress)
+                .Include(b => b.PersonalInformation)
+                .ThenInclude(b => b.Address)
                 .FirstOrDefault(a => a.Id == userId);
 
             if (account == null)
             {
                 return null;
             }
-            var userInfo = account.userInformation;
-            var address = userInfo?.UserAddress;
+            var userInfo = account.PersonalInformation;
+            var address = userInfo?.Address;
             var userDto = new UserDto
             {
                 Username = account.Username,
@@ -171,7 +169,7 @@ namespace Exam.DAL
             };
             if (userInfo != null)
             {
-                userDto.UserInformation = new UserInformationDto
+                userDto.PersonalInformation = new PersonalInformationDto
                 {
                     Name = userInfo.Name,
                     Surname = userInfo.Surname,
