@@ -36,7 +36,7 @@ builder.Services.AddSwaggerGen(options => {
         });
 });
 
-builder.Services.AddDbContext<AccountsRegistrationDbContext>(options =>
+builder.Services.AddDbContext<UserRegistrationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddScoped<IJwtRepository, JwtRepository>();
