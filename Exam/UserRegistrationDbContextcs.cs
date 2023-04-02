@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
 
-namespace CodeAcademyFinalExam
+namespace Exam
 {
     public class UserRegistrationDbContext : DbContext
     {
