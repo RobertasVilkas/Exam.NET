@@ -12,10 +12,10 @@ namespace Exam.DTO
         public string Role { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public PersonalInformationDto UserInformation { get; internal set; }
+        public PersonalInformationDto PersonalInformation { get; internal set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 
-        public UserAddressDto UserAddress { get; internal set; }
+        public UserAddressDto Address { get; internal set; }
 
         public static UserDto FromAccount(UserAccount account)
         {
@@ -30,25 +30,25 @@ namespace Exam.DTO
                 Role = account.Role
             };
 
-            if (account.UserInformation != null)
+            if (account.PersonalInformation != null)
             {
-                userDto.UserInformation = new UserInformationDto
+                userDto.PersonalInformation = new PersonalInformationDto
                 {
-                    Name = account.UserInformation.Name,
-                    Surname = account.UserInformation.Surname,
-                    PersonalCode = account.UserInformation.PersonalCode,
-                    TelephoneNumber = account.UserInformation.TelephoneNumber,
-                    Email = account.UserInformation.Email
+                    Name = account.PersonalInformation.Name,
+                    Surname = account.PersonalInformation.Surname,
+                    PersonalCode = account.PersonalInformation.PersonalCode,
+                    TelephoneNumber = account.PersonalInformation.TelephoneNumber,
+                    Email = account.PersonalInformation.Email
                 };
 
-                if (account.PersonalInformation.UserAddress != null)
+                if (account.PersonalInformation.Address != null)
                 {
-                    userDto.UserAddress = new UserAddressDto
+                    userDto.Address = new UserAddressDto
                     {
-                        City = account.UserInformation.UserAddress.City,
-                        Street = account.UserInformation.UserAddress.Street,
-                        HouseNumber = account.UserInformation.UserAddress.HouseNumber,
-                        FlatNumber = account.UserInformation.UserAddress.FlatNumber
+                        City = account.PersonalInformation.Address.City,
+                        Street = account.PersonalInformation.Address.Street,
+                        HouseNumber = account.PersonalInformation.Address.HouseNumber,
+                        FlatNumber = account.PersonalInformation.Address.FlatNumber
                     };
                 }
             }

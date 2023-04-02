@@ -16,9 +16,9 @@ namespace Exam.Controllers
     {
         private readonly IUserInformationDbRepository _userInformation;
 
-        public UserInformationController(IUserInformationDbRepository userInformation)
+        public UserInformationController(IUserInformationDbRepository personalInformation)
         {
-            _userInformation = userInformation;
+            _personalInformation = personalInformation;
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]

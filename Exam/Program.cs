@@ -40,9 +40,9 @@ builder.Services.AddDbContext<UserRegistrationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddScoped<IJwtRepository, JwtRepository>();
-builder.Services.AddScoped<IHumanInformationDbRepository, HumanInformationDbRepository>();
+builder.Services.AddScoped<IUserInformationDbRepository, UserInformationDbRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowSpecificOrigin",
