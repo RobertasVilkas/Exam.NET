@@ -7,9 +7,9 @@ namespace Exam
     {
         public DbSet<UserAccount> UserAccounts { get; set; }
 
-        public DbSet<Address> Address { get; set; }
+        public DbSet<UserAddress> Address { get; set; }
 
-        public DbSet<HumanInformation> HumanInformation { get; set; }
+        public DbSet<UserInformation> UserInformation { get; set; }
 
         public UserRegistrationDbContext(DbContextOptions<UserRegistrationDbContext> options) : base(options)
         {
@@ -17,7 +17,7 @@ namespace Exam
         }
         public bool DoesUserExist(string username)
         {
-            return Accounts.Any(a => a.Username == username);
+            return UserAccounts.Any(a => a.Username == username);
         }
     }
 }
