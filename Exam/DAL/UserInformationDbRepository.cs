@@ -98,7 +98,7 @@ namespace Exam.DAL
                         {
                             Username = acc.Username,
                             Role = acc.Role,
-                            UserInformation = new PersonalInformationDto
+                            PersonalInformation = new PersonalInformationDto
                             {
                                 Name = userInfo.Name,
                                 Surname = userInfo.Surname,
@@ -122,7 +122,7 @@ namespace Exam.DAL
                         {
                             Username = acc.Username,
                             Role = acc.Role,
-                            UserInformation = new PersonalInformationDto
+                            PersonalInformation = new PersonalInformationDto
                             {
                                 Name = userInfo.Name,
                                 Surname = userInfo.Surname,
@@ -141,7 +141,7 @@ namespace Exam.DAL
                     {
                         Username = acc.Username,
                         Role = acc.Role,
-                        UserInformation = null
+                        PersonalInformation = null
                     };
                     userDtos.Add(userDto);
                 }
@@ -180,7 +180,7 @@ namespace Exam.DAL
             }
             if (address != null)
             {
-                userDto.UserAddress = new UserAddressDto
+                userDto.PersonalAddress = new UserAddressDto
                 {
                     City = address.City,
                     Street = address.Street,
