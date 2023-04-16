@@ -1,4 +1,11 @@
+using Exam;
+using Exam.BLL;
+using Exam.DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +55,7 @@ builder.Services.AddCors(options => {
     options.AddPolicy("AllowSpecificOrigin",
             builder => {
                 builder
-                            .WithOrigins("http://127.0.0.1:5500")
+                            .WithOrigins("http://127.0.0.1:5500/")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();

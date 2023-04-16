@@ -16,9 +16,9 @@ namespace Exam.Controllers
     {
         private readonly IUserInformationDbRepository _userInformation;
 
-        public UserInformationController(IUserInformationDbRepository personalInformation)
+        public UserInformationController(IUserInformationDbRepository userInformation)
         {
-            _personalInformation = personalInformation;
+            _userInformation = userInformation;
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]
@@ -41,7 +41,7 @@ namespace Exam.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]
         [HttpPut]
         [Route("update-user-information")]
-        public IActionResult UpdateItem([FromBody] UserInformationDto human)
+        public IActionResult UpdateItem([FromBody] PersonalInformationDto human)
         {
             if (!ModelState.IsValid)
             {
