@@ -41,7 +41,7 @@ namespace Exam.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]
         [HttpPut]
         [Route("update-user-information")]
-        public IActionResult UpdateItem([FromBody] PersonalInformationDto human)
+        public IActionResult UpdateItem([FromBody] PersonalInformationDto person)
         {
             if (!ModelState.IsValid)
             {
@@ -50,9 +50,9 @@ namespace Exam.Controllers
 
             var userIdStr = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var useridInt = int.Parse(userIdStr);
-            _userInformation.UpdateUserById(useridInt, human.Name, human.Surname, human.PersonalCode,
-                human.TelephoneNumber, human.Email, human.Address.City, human.Address.Street,
-                human.Address.HouseNumber, human.Address.FlatNumber);
+            _userInformation.UpdateUserById(useridInt, person.Name, person.Surname, person.PersonalCode,
+                person.TelephoneNumber, person.Email, person.Address.City, person.Address.Street,
+                person.Address.HouseNumber, person.Address.FlatNumber);
 
             return Ok();
         }
