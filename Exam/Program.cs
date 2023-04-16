@@ -44,7 +44,7 @@ builder.Services.AddSwaggerGen(options => {
 });
 
 builder.Services.AddDbContext<UserRegistrationDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
+        options.UseSqlServer($"Server=localhost\\MSSQLSERVER04;Database=Exam;Trusted_Connection=True;"));
 
 builder.Services.AddScoped<IJwtRepository, JwtRepository>();
 builder.Services.AddScoped<IUserInformationDbRepository, UserInformationDbRepository>();

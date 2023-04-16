@@ -84,16 +84,16 @@ namespace Exam.DAL
 
         public IEnumerable<UserDto> GetAllUserInfo()
         {
-            var accounts = _context.UserAccounts.Include(b => b.PersonalInformation).ThenInclude(b => b.UserAddress).ToList();
+            var accounts = _context.UserAccounts.Include(b => b.PersonalInformation).ThenInclude(b => b.Address).ToList();
             List<UserDto> userDtos = new List<UserDto>();
             foreach (var acc in accounts)
             {
                 if (acc.PersonalInformation != null)
                 {
                     var userInfo = acc.PersonalInformation;
-                    if (userInfo.UserAddress != null)
+                    if (userInfo.Address != null)
                     {
-                        var address = userInfo.UserAddress;
+                        var address = userInfo.Address;
                         var userDto = new UserDto
                         {
                             Username = acc.Username,
@@ -180,7 +180,7 @@ namespace Exam.DAL
             }
             if (address != null)
             {
-                userDto.PersonalAddress = new UserAddressDto
+                userDto.Address = new UserAddressDto
                 {
                     City = address.City,
                     Street = address.Street,
@@ -189,6 +189,11 @@ namespace Exam.DAL
                 };
             }
             return userDto;
+        }
+
+        public void AddNewUserToList(int id, UserInformationDto UserDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Exam.BLL;
 using Exam.DTO;
-using Exam.BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
