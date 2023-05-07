@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using System.Numerics;
 using System.Security.Claims;
 
 namespace Exam.Controllers
 {
-    [Route("api/")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserInformationController : ControllerBase
     {

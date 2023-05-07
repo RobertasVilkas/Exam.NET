@@ -7,7 +7,7 @@ namespace Exam.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserAccountsController : ControllerBase
+    public class UserAccountController : ControllerBase
     {
         private readonly IUserAccountService _accountsService;
         private readonly IJwtService _jwtService;
