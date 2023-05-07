@@ -11,7 +11,7 @@ namespace Exam.Controllers
     {
         private readonly IUserAccountService _accountsService;
         private readonly IJwtService _jwtService;
-        public UserAccountsController(IUserAccountService accountsService, IJwtService jwtService)
+        public UserAccountController(IUserAccountService accountsService, IJwtService jwtService)
         {
             _accountsService = accountsService;
             _jwtService = jwtService;
